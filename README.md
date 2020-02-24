@@ -2,7 +2,7 @@
 
 This project is a basic Angular 9 + Material Angular / ExpressJS applications.
 
-The server use a in-memory database.
+The server use an in-memory database.
 
 ## Start API (locally)
 
