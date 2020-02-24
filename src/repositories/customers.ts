@@ -17,6 +17,18 @@ export const add = (customer: Customer): Customer => {
   return customer;
 }
 
+export const addAddress = (customerId: number, address: Address): Address => {
+  const customer = find(customerId);
+  if (customer.addresses && customer.addresses.length > 0) {
+    address.id = customer.addresses[customer.addresses.length -1 ].id + 1;
+  } else {
+    address.id = 1;
+    customer.addresses = [];
+  }
+  customer.addresses.push(address);
+  return address;
+} 
+
 export const findAll = (): Customer[] => {
   return CUSTOMERS;
 }

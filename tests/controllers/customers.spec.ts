@@ -27,7 +27,21 @@ describe("POST /customer/:id/address", () => {
     
     expect(res.body).toEqual(
       {
-        customer: {
+        type: "perso",
+        city: "Paris",
+        country: "france",
+        line: "7 rue de temple",
+        id: 1
+      }
+    );
+  });
+});
+
+describe("GET /customer/:id", () => {
+  it('should return the customer', async () => {
+    const res = await request(app).get('/customer/1');
+      expect(res.body).toEqual(
+        {
           firstName: 'Julien',
           lastName: 'M',
           phoneNumber: '+33642424242',
@@ -43,33 +57,6 @@ describe("POST /customer/:id/address", () => {
           ],
           id: 1
         }
-      }
-    );
-  });
-});
-
-describe("GET /customer/:id", () => {
-  it('should return the customer', async () => {
-    const res = await request(app).get('/customer/1');
-      expect(res.body).toEqual(
-        {
-          customer: {
-            firstName: 'Julien',
-            lastName: 'M',
-            phoneNumber: '+33642424242',
-            email: 'email@email.com',
-            addresses: [
-              {
-                type: "perso",
-                city: "Paris",
-                country: "france",
-                line: "7 rue de temple",
-                id: 1
-              }
-            ],
-            id: 1
-          }
-        }
       );
   });
 });
@@ -78,26 +65,24 @@ describe("GET /customer", () => {
   it('should return all customers', async () => {
     const res = await request(app).get('/customer');
       expect(res.body).toEqual(
-        {
-          customers: [
-            {
-              firstName: 'Julien',
-              lastName: 'M',
-              phoneNumber: '+33642424242',
-              email: 'email@email.com',
-              addresses: [
-                {
-                  type: "perso",
-                  city: "Paris",
-                  country: "france",
-                  line: "7 rue de temple",
-                  id: 1
-                }
-              ],
-              id: 1
-            }
-          ]
-        }
+        [
+          {
+            firstName: 'Julien',
+            lastName: 'M',
+            phoneNumber: '+33642424242',
+            email: 'email@email.com',
+            addresses: [
+              {
+                type: "perso",
+                city: "Paris",
+                country: "france",
+                line: "7 rue de temple",
+                id: 1
+              }
+            ],
+            id: 1
+          }
+        ]
       );
   });
 });
@@ -106,36 +91,30 @@ describe("GET /city/:city", () => {
   it('should return all customers in this city', async () => {
     const res = await request(app).get('/city/Paris');
     expect(res.body).toEqual(
-      {
-        customers: [
-          {
-            firstName: 'Julien',
-            lastName: 'M',
-            phoneNumber: '+33642424242',
-            email: 'email@email.com',
-            addresses: [
-              {
-                type: "perso",
-                city: "Paris",
-                country: "france",
-                line: "7 rue de temple",
-                id: 1
-              }
-            ],
-            id: 1
-          }
-        ]
-      }
+      [
+        {
+          firstName: 'Julien',
+          lastName: 'M',
+          phoneNumber: '+33642424242',
+          email: 'email@email.com',
+          addresses: [
+            {
+              type: "perso",
+              city: "Paris",
+              country: "france",
+              line: "7 rue de temple",
+              id: 1
+            }
+          ],
+          id: 1
+        }
+      ]
     );
   });
 
   it('should return no customers if city not in any address', async () => {
     const res = await request(app).get('/city/test');
-    expect(res.body).toEqual(
-      {
-        customers: []
-      }
-    );
+    expect(res.body).toEqual([]);
   });
 });
 
@@ -143,36 +122,30 @@ describe("GET /phone/+336", () => {
   it('should return all customers with this phone prefix', async () => {
     const res = await request(app).get('/phone/+33');
     expect(res.body).toEqual(
-      {
-        customers: [
-          {
-            firstName: 'Julien',
-            lastName: 'M',
-            phoneNumber: '+33642424242',
-            email: 'email@email.com',
-            addresses: [
-              {
-                type: "perso",
-                city: "Paris",
-                country: "france",
-                line: "7 rue de temple",
-                id: 1
-              }
-            ],
-            id: 1
-          }
-        ]
-      }
+      [
+        {
+          firstName: 'Julien',
+          lastName: 'M',
+          phoneNumber: '+33642424242',
+          email: 'email@email.com',
+          addresses: [
+            {
+              type: "perso",
+              city: "Paris",
+              country: "france",
+              line: "7 rue de temple",
+              id: 1
+            }
+          ],
+          id: 1
+        }
+      ]
     );
   });
 
   it('should return no customers with unexistant phone prefix', async () => {
     const res = await request(app).get('/phone/+118');
-    expect(res.body).toEqual(
-      {
-        customers: []
-      }
-    );
+    expect(res.body).toEqual([]);
   });
 });
 
@@ -183,14 +156,12 @@ describe("DELETE /customer/:id/address/:address_id", () => {
     
     expect(res.body).toEqual(
       {
-        customer: {
-          firstName: 'Julien',
-          lastName: 'M',
-          phoneNumber: '+33642424242',
-          email: 'email@email.com',
-          addresses: [],
-          id: 1
-        }
+        firstName: 'Julien',
+        lastName: 'M',
+        phoneNumber: '+33642424242',
+        email: 'email@email.com',
+        addresses: [],
+        id: 1
       }
     );
   });
