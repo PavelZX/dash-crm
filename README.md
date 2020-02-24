@@ -2,15 +2,18 @@
 
 This project is a basic Angular 9 + Material Angular / ExpressJS applications.
 
+The server use a in-memory database.
+
 ## Start API (locally)
 
 The API can be started locally with :
 
 ````
+npm install
 node run dev
 ````
 
-The API is available on [http://localhost:8080](http://localhost:8080)
+The API is available on [http://localhost:8080](http://localhost:8080).
 
 ## Start Client (locally)
 
@@ -18,8 +21,11 @@ The angular Client can be started locally with:
 
 ````
 cd ./client
+npm install 
 ng serve --open
 ````
+
+The client is available on [http://localhost:4200/](http://localhost:4200/).
 
 ## Video demo
 
