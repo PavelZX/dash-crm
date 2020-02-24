@@ -1,0 +1,24 @@
+<div style="padding: 13px;">
+  <form [formGroup]="searchForm" (ngSubmit)="onSubmit(searchForm.value)">
+    <mat-form-field appearance="legacy">
+      <mat-label>Search</mat-label>
+      <input id="search" type="text" formControlName="search" matInput placeholder="city:paris">
+      <mat-hint>city:Paris or phone:+336</mat-hint>
+    </mat-form-field>
+    <button mat-button class="button" type="submit">Search</button>
+  </form>
+  <mat-spinner *ngIf="!loaded"></mat-spinner>
+  <h2 *ngIf="customers.length === 0 && loaded">No customers</h2>
+  <mat-card *ngFor="let customer of customers" routerLink="/customers/{{customer.id}}" style="margin-top:10px;" matBadge="{{customer.id}}" matBadgeColor="accent" matBadgePosition="above before">
+    <mat-card-header>
+      <mat-card-title>{{customer.firstName}} {{customer.lastName}}</mat-card-title>
+      <mat-card-subtitle>{{customer.phoneNumber}}</mat-card-subtitle>
+      <mat-card-subtitle>{{customer.email}}</mat-card-subtitle>
+    </mat-card-header>
+  <mat-card-content>
+    <span *ngFor="let address of customer.addresses">
+      {{address.type}} ({{address.city}}), 
+    </span>
+  </mat-card-content>
+  </mat-card>
+</div>

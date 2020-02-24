@@ -1,0 +1,39 @@
+<!-- <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+  <input name="first_name" formControlName="first_name">
+  <input name="last_name" formControlName="last_name">
+  <input name="email" formControlName="email">
+  <input name="phone_number" formControlName="phone_number">
+  <button type="submit">Add</button>
+ </form> -->
+
+<form [formGroup]="addForm" (ngSubmit)="onSubmit(addForm.value)" style="padding: 20px">
+  <div>
+    <mat-form-field appearance="legacy">
+      <mat-label>First name</mat-label>
+      <input id="first_name" type="text" formControlName="first_name" matInput placeholder="John">
+      <mat-hint>Your first name</mat-hint>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="legacy">
+      <mat-label>Last name</mat-label>
+      <input id="last_name" type="text" formControlName="last_name" matInput placeholder="Doe">
+      <mat-hint>Your last name</mat-hint>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="legacy">
+      <mat-label>Email</mat-label>
+      <input id="email" type="text" formControlName="email" matInput placeholder="john@doe.com">
+      <mat-hint>Your email</mat-hint>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="legacy">
+      <mat-label>Phone Number</mat-label>
+      <input id="phone_number" type="text" formControlName="phone_number" matInput placeholder="+336424242">
+      <mat-hint>Your phone number</mat-hint>
+    </mat-form-field>
+  </div>
+  <button class="button" type="submit">Add</button>
+</form>

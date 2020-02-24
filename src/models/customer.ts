@@ -1,5 +1,5 @@
 import { Address } from '../models/address';
-import { find, add, findAll, findAllByCity , findAllByPhonePrefix, deleteAll} from '../repositories/customers';
+import { find, add, findAll, findAllByCity , findAllByPhonePrefix, deleteAll, addAddress} from '../repositories/customers';
 
 export class Customer {
   public id: number;
@@ -9,16 +9,17 @@ export class Customer {
     this.addresses = [];
   }
 
-  public addAddress(address: Address): void {
-    address.id = this.addresses.length + 1;
-    this.addresses.push(address);
+  public addAddress(id: number, address: Address): Address {
+    const newAddress = addAddress(id, address);
+    return newAddress;
   }
 
   public deleteAddress(id: number): void {
-    if (id <= 0 || id > this.addresses.length) {
+    const index = this.addresses.findIndex(address => address.id === id);
+    if (index === -1) {
       throw new Error("Address doesn't exist");
     }
-    this.addresses.splice(this.addresses.findIndex(address => address.id === id), 1)
+    this.addresses.splice(index, 1)
   }
 
   public isLivingIn(city: string): Boolean {
