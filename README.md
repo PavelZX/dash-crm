@@ -9,8 +9,8 @@ The server use an in-memory database.
 The API can be started locally with :
 
 ````
-npm install
-node run dev
+npm i
+npm run dev
 ````
 
 The API is available on [http://localhost:8080](http://localhost:8080).
@@ -21,7 +21,7 @@ The angular Client can be started locally with:
 
 ````
 cd ./client
-npm install 
+npm i 
 ng serve --open
 ````
 
